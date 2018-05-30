@@ -1,0 +1,36 @@
+<%+header%>
+
+<%
+    local http = require("socket.http")
+    local ltn12 = require("ltn12")
+    local mime = require("mime")
+    local json = require("json")
+
+    local request_headers = {}
+    request_headers["Authorization"] = "Basic " .. (mime.b64("admin:admin"))
+    content_table = {}
+
+    local result, code, headers = http.request{
+        url = "http://192.168.2.50/cli/localdiagnostics", 
+        headers = request_headers,
+        sink = ltn12.sink.table(content_table)}
+
+    systeminfo_json = table.concat(content_table)
+%>
+
+<h2><%:Local Diagnostics%></h2> 
+
+<ul>
+    <%
+        local string_end = string.len(systeminfo_json) - 1                     
+        local prepped_json = string.sub(systeminfo_json, 2, string_end)
+        prepped_json = string.gsub(prepped_json, '"', "'")
+        decoded_json = json.decode(prepped_json)
+
+        for k, v in pairs(decoded_json.RESPONSE.pages.localDiagnostics) do                            
+                print("<li>" .. k .. ":" .. v .. "</li>")                                                  
+        end
+    %>
+</ul>
+
+<%+footer%>

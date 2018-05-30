@@ -1,0 +1,4 @@
+#!/bin/sh
+[ -n "${IPKG_INSTROOT}" ] || {
+	( . ../root/etc/uci-defaults/luci-theme-mytheme ) && rm -f ../root/etc/uci-defaults/luci-theme-mytheme
+}

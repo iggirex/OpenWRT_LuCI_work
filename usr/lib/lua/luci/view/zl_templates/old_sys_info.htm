@@ -1,0 +1,69 @@
+<%+header%>
+<%
+local http = require("socket.http")
+local ltn12 = require("ltn12")
+local mime = require("mime")
+
+local request_headers = {}
+request_headers["Authorization"] = "Basic " .. (mime.b64("admin:admin"))
+content_table = {}
+
+local result, code, headers = http.request{
+    url = "http://192.168.2.50/cli/systemInfo",
+    headers = request_headers,
+    sink = ltn12.sink.table(content_table)}
+
+systeminfo_json = table.concat(content_table)
+%>
+
+<h1><%:SystemInfo Example%></h1> 
+
+<span>Result</span>
+<%=result%>
+
+<span>Response Code</span>
+<%=code%>
+
+<h2>Response Headers</h2>
+<ul>
+<%
+for index, value in pairs(headers) do
+    print("<li>" .. index .. ": " .. value .. "</li>")
+end
+%>
+</ul>
+
+<h2>SystemInfo JSON</h2>
+<%=systeminfo_json%>
+
+<h2>Parsing Going On Here</h2>
+<%
+local serialNumberStart = string.find(systeminfo_json, "serialNumber")
+serialNumberStart = serialNumberStart + 16
+
+local serialNumberEnd = string.find(systeminfo_json, "\"", 162)
+
+local serialNumber = string.sub(systeminfo_json, serialNumberStart, serialNumberEnd - 1)
+
+--local serialNumberEnd = string.find(
+
+--local modelCode = string.find(body, "Model Code")
+
+
+
+%>
+
+<h3>SerialNumeber Label Start</h3>
+<p><%=serialNumberLabelStart%></p>
+
+<h3>SerialNumber START</h3>
+<p><%=serialNumberStart%></p>
+
+<h3>SerialNumber END</h3>
+<p><%=serialNumberEnd%></p>
+
+<h3>Serial Number: <%=serialNumber%></h3>
+
+
+
+<%+footer%>

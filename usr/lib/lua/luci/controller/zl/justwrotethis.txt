@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="/css/restStyle.css">
+
+</head>
+<body>
+<div id="top-menu" height="100">
+
+
+<ul id="top-menu" style="position:absolute; bottom:0; right:0;">
+<li id="top-menu"><a id="top-menu" href="/user_data" class="top-menu"><img src="/__icons__/page_white_code.png" height="16" width="16">User Data - Drag and Drop Files</a></li>
+<li id="top-menu"><a id="top-menu" href="/upload" class="top-menu"><img src="/__icons__/arrow_up.png" height="16" width="16">File Upload</a></li>
+<li id="top-menu"><a id="top-menu" href="/dump/systemInfo" class="top-menu"><img src="/__icons__/information.png" height="16" width="16">System Info</a></li>
+
+
+
+<!--<li id="top-menu"><a id="top-menu" href="/trend" class="top-menu"><img src="/__icons__/chart_line.png" height="16" width="16">Trends</a></li>-->
+<li id="top-menu"><a id="top-menu" href="/help" class="top-menu"><img src="/__icons__/help.png" height="16" width="16">Help</a></li>
+<li id="top-menu"><a id="top-menu" href='javascript:(function(c){var a;try{a=document.execCommand("ClearAuthenticationCache");}catch(d){}a||((a=window.XMLHttpRequest?new window.XMLHttpRequest:window.ActiveXObject?new ActiveXObject("Microsoft.XMLHTTP"):void 0)?(a.open("HEAD",c||location.href,!0,"logout",(new Date).getTime().toString()),a.send(""),a=1):a=void 0);})();alert("You have logged out.");' class="top-menu"><img src="/__icons__/control_eject_blue.png" height="16" width="16">Logout</a></li>
+</ul>
+</div>
+<ul class="restStyle">
+<li class="restStyle">
+<form action="" method=post enctype=multipart/form-data class="restStyle">
+<span class="restStyle">System Info</span>
+<div class="restStyle">
+    <label for="systemInfo.serialNumber" class="restStyle">Serial Number</label>
+    <div>4026717581</div>
+</div>
+<div class="restStyle">
+    <label for="systemInfo.modelCode" class="restStyle">Model Code</label>
+    <div>0</div>
+</div>
+<div class="restStyle">
+    <label for="systemInfo.radioModel" class="restStyle">Radio Model</label>
+    <div>AMT0100AA</div>
+</div>
+<div class="restStyle">
+    <label for="systemInfo.radioModelCode" class="restStyle">Radio Model Code</label>
+    <div>0</div>
+</div>
+<div class="restStyle">
+    <label for="systemInfo.radioFirmwareVersion" class="restStyle">Radio Firmware Version</label>
+    <div>FWT1040TA.11</div>
+</div>
+<div class="restStyle">
+    <label for="systemInfo.radioSerialNumber" class="restStyle">Radio Serial Number</label>
+    <div>4026717581</div>
+</div>
+<div class="restStyle">
+    <label for="systemInfo.deviceName" class="restStyle">Device Name</label>
+    <div>radio50</div>
+</div>
+<div class="restStyle">
+    <label for="systemInfo.deviceModel" class="restStyle">Device Model</label>
+    <div>Z9-PE-DEV</div>
+</div>
+<div class="restStyle">
+    <label for="systemInfo.deviceConfiguration" class="restStyle">Device Configuration</label>
+    <div>R1</div>
+</div>
+<div class="restStyle">
+    <label for="systemInfo.deviceFirmwareVersion" class="restStyle">Device Firmware Version</label>
+    <div>dev-optipath.11</div>
+</div>
+<div class="restStyle">
+    <label for="systemInfo.deviceId" class="restStyle">Device ID</label>
+    <div>1</div>
+</div>
+<div class="restStyle">
+    <label for="systemInfo.layoutHash" class="restStyle">Layout Hash</label>
+    <div>566392220</div>
+</div>
+<div class="restStyle">
+    <label for="systemInfo.resetInfo" class="restStyle">Reset Info</label>
+    <div>&nbsp;</div>
+</div>
+<div class="restStyle">
+    <label for="systemInfo.hopTableVersion" class="restStyle">Hop Table Version</label>
+    <div>SET0001HT</div>
+</div>
+<div class="restStyle">
+    <label for="systemInfo.rteVersion" class="restStyle">Rte Version</label>
+    <div>&nbsp;</div>
+</div>
+<div class="restStyle">
+    <label for="systemInfo.rteTemplateVersion" class="restStyle">Rte Template Version</label>
+    <div>&nbsp;</div>
+</div>
+<div class="restStyle">
+    <label for="systemInfo.licenses" class="restStyle">Licenses</label>
+    <div>Custom Apps</div>
+</div>
+</form>
+</li>
+</ul>

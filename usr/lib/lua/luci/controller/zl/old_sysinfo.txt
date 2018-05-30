@@ -1,0 +1,26 @@
+module("luci.controller.zl.sysinfo", package.seeall)
+
+local socket = require("socket")
+local http = require("socket.http")
+local fs = require("nixio.fs")
+
+function callRadioAPI()
+--	local go_go = require "luci.http.redirect"  -- will need this to redirect after API call
+
+
+--	local body, headers, code = http.request("http://192.168.2.50")
+--	print("this is body: ", body, "this is headers: ", headers)
+--	fs.write("/usr/lib/lua/luci/zl_template_config/zl_config", body)
+
+--	socket.sleep(10)
+
+--	fs.write("/hey.txt", body)
+
+--	luci.http.redirect("http://127.0.0.1:8080/cgi-bin/luci/;stok=72c3e67e3ee2f84508454f5da8d055d1/zl/system/info")
+end
+
+function index()
+--	entry({"zl", "system", "callRadio"}, call("callRadioAPI")).dependent=false
+	entry({"zl", "system", "info"}, template("zl_templates/sysinfo")).dependent=false -- this worx
+end
+

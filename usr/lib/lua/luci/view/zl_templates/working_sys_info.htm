@@ -1,0 +1,87 @@
+<%+header%>
+<%
+local http = require("socket.http")
+local ltn12 = require("ltn12")
+local mime = require("mime")
+local json = require("json")
+
+local request_headers = {}
+request_headers["Authorization"] = "Basic " .. (mime.b64("admin:admin"))
+content_table = {}
+
+
+local result, code, headers = http.request{
+    url = "http://192.168.2.50/cli/systemInfo",
+    headers = request_headers,
+    sink = ltn12.sink.table(content_table)}
+
+systeminfo_json = table.concat(content_table)
+%>
+
+<h2><%:SystemInfo Example%></h2> 
+
+<h3>SystemInfo JSON</h3>
+<%=systeminfo_json%>
+
+<h3>Parsing Going On Here</h3>
+<%
+
+twoObjectString = '{"RESPONSE": {"pages": {"systemInfo": {"deviceName": "radio50", "rteVersion": "", "hopTableVersion": "SET0001HT", "deviceModel": "Z9-PE-DEV", "serialNumber": "4026717581", "resetInfo": "", "deviceFirmwareVersion": "dev-optipath.11", "radioSerialNumber": "4026717581", "layoutHash": "566392220", "deviceId": "1", "rteTemplateVersion": "", "licenses": "Custom Apps", "radioModelCode": "0", "radioModel": "AMT0100AA", "deviceConfiguration": "R1", "modelCode": "0", "radioFirmwareVersion": "FWT1040TA.11"}}}, "RESULT": {"MESSAGE": "OK", "RESULT": 0}}' 
+decoded_twoObjectString = json.decode(twoObjectString)
+
+print("##########################")
+table.foreach(decoded_twoObjectString.RESPONSE.pages.systemInfo, print)
+print("##########################")
+
+
+testStringJSONquotes = ' { "one":1 , "two":2, "primes":[2,3,5,7] } ' --// current json string = bad
+testString = [[ { "one":1 , "two":2, "primes":[2,3,5,7] } ]]  --//real json with extra [] = good
+decoded = json.decode(testString)
+decodedJSONquotes = json.decode(testStringJSONquotes)
+
+print("Test String coming from Lua code: \n")
+
+table.foreach(decoded, print)
+print ("\nPrimes are:\n")
+table.foreach(decoded.primes,print)
+
+print("checking testStringJSONquotes")
+table.foreach(decodedJSONquotes.primes, print)
+
+local systeminfo_json_length = string.len(systeminfo_json)
+local preppedJSON = string.sub(systeminfo_json, 2, 547)
+
+print("ydo FFOOOLLL tis is systeminfo_json:" .. systeminfo_json)
+
+print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" .. preppedJSON)
+
+print("++++++++++++++++++++++++++++++++++++++++++++" .. systeminfo_json_length)
+
+%>
+
+<h3>Table Stuff foreach</h3>
+<%
+table.foreach(content_table, print)
+local wtf = type(content_table)
+print("this is WTF: ", wtf)
+
+%>
+
+<h3>More stuff right here</h3>
+<%
+for k, v in pairs(decoded_twoObjectString.RESPONSE.pages.systemInfo) do
+	print(k .. v)
+end
+
+%>
+
+<ul>
+<%
+for k, v in pairs(decoded_twoObjectString.RESPONSE.pages.systemInfo) do                         
+        print("<li>" .. k .. ":" .. v .. "</li>")                                                          
+end 
+%>
+</ul>
+
+
+<%+footer%>

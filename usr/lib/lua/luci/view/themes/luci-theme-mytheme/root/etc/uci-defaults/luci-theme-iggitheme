@@ -1,0 +1,5 @@
+#!/bin/sh
+uci batch <<-EOF
+	set luci.themes.iggitheme=/luci-static/iggitheme
+	commit luci
+EOF
